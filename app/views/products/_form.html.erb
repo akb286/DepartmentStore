@@ -1,0 +1,14 @@
+<h1><%= @product.id ? 'Edit Product' : 'Create Product' %></h1>
+<hr/>
+<%= form_for [@department, @product] do |f| %>
+<%= f.label :name %>
+<%= f.text_field :name, required: true, autofocus: true %>
+<br/>
+<%= f.label :price %>
+<%= f.text_field :price, required: true, autofocus: true %>
+<br/>
+<%= f.label :body %>
+<%= f.text_area :body, required: true %>
+<br/>
+<%= f.submit %>
+<% end %>
