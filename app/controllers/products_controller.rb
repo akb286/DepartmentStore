@@ -1,25 +1,23 @@
 class ProductsController < ApplicationController
-    before_action :set_sub
-    before_action :set_topic, only: [:show, :edit, :update, :destroy]
+    before_action :set_department
+    before_action :set_product, only: [:show, :edit, :update, :destroy]
 
     def index
-      @products = @department.topics
+      @products = @department.products
     end
 
     def show
     end
 
     def new
-      @product = @department.topics.new
-      render partial: "form"
+      @product = @department.products.new
     end
 
     def edit
-      render partial: "form"
     end
 
     def create
-      @product = @product.department.new(products_params)
+      @product = @department.products.new(product_params)
 
       if @product.save
         redirect_to [@department, @product]
@@ -43,14 +41,14 @@ class ProductsController < ApplicationController
 
     private #methods that can only be accessed in this "ProductsController"
       def set_department
-        @product = Department.find(params[:product_id])
+        @department = Department.find(params[:department_id])
       end
 
-      def set_department
+      def set_product
         @product = Product.find(params[:id])
       end
 
-      def product_id_params
+      def product_params
         params.require(:product).permit(:name, :price, :body)
       end
   end

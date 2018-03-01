@@ -1,3 +1,3 @@
 class Department < ApplicationRecord
-  has_many :departments
+  has_many :products, dependent: :destroy
 end
